@@ -15,7 +15,19 @@ public class PlayGame {
      */
     public static void main(String[] args) {
         // Psuedo Code of how I think the game should flow.
+            /*
+                I am trying to figure out whether I should make each of the 
+                9 possible squares its own object and add them all to a
+                collection or should I create a Glid class that has fields
+                for each of the 9 squares so I can use a single instance.
+                I am going to try the Grid Class first.
+        */
         
+        Grid myGame = new Grid();
+        myGame.displayGrid();
+            
+        // Setup a keyboard system object for keyboard player square entry.
+
         // Set game over flag to false.
         
         // Create objects to represent squares. // NEED SQUARE CLASS.
