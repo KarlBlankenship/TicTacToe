@@ -4,6 +4,8 @@
  */
 package karl.blankenship.TicTacToe.Game;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -14,6 +16,25 @@ import javax.swing.JOptionPane;
  */
 public class PlayGame {
 
+    private List<Square> squares; // Will hold a list of Square objects.
+    private boolean gameOver; // Flag for game to determine when it is over.
+    private Random random; // For generating random numbers.
+    private boolean playerTurn; // Flag for knowing when it is players turn.
+    private boolean emptySquares; // May turn this into a method.
+    
+    /**
+     * Constructor.
+     */
+    public PlayGame() {  // NEED TO FINISH CONSTRUCTOR
+        
+        // Generate list of squares.
+        squares = new ArrayList();
+        for (int i = 0; i < 9; i++) {
+            squares.add(new Square(Integer.toString(i+1)));
+        }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -27,27 +48,35 @@ public class PlayGame {
                 I am going to try the Grid Class first.
         */
                     
+        //TEst area
+        PlayGame game = new PlayGame();
+        for (int x = 0; x < 9; x++) {
+            System.out.println("Square: " + game.squares.get(x).getContents());
+        }
+
+        
+
         // Setup a keyboard system object for keyboard player square entry.
         Scanner keyboard = new Scanner(System.in); // 
 
         // Set game over flag to false.
-        boolean gameOver = false;
+        
         
         // Create objects to represent squares. // NEED SQUARE CLASS.
         // Created a grid class
-        Grid grid = new Grid();
+        //Grid grid = new Grid();
         
         // Select whether player or computer goes first randomly by boolean
         // flag such as true for player and false for computer.
-        Random random = new Random();
-        boolean playerTurn = random.nextBoolean();
+        //Random random = new Random();
+        //boolean playerTurn = random.nextBoolean();
         
         // Display instructions and grid
-        grid.displayGrid();
-        System.out.println("Please type the number of the square you"); 
-        System.out.println("would like to select and hit <Enter>");   
-        System.out.println("when prompted as your turn.");
-        System.out.println("You are X's and 3 in a row wins!");
+        //grid.displayGrid();
+        //System.out.println("Please type the number of the square you"); 
+        //System.out.println("would like to select and hit <Enter>");   
+        //System.out.println("when prompted as your turn.");
+        //System.out.println("You are X's and 3 in a row wins!");
         
 
         
@@ -55,7 +84,7 @@ public class PlayGame {
         
         // Set an empty squares flag (or could use a counter since 9 turns is
         // the most.
-        boolean emptySquares = true;
+        //boolean emptySquares = true;
         
         // While game is not over AND there are empty Squares.
     /*    while (!gameOver && emptySquares) {
