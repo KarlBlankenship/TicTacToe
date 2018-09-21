@@ -54,5 +54,9 @@ public class Grid {
         System.out.println("   |   |   ");
     }
     
+    public void isEmpty(String number) {
+       
+    }
+    
     
 }

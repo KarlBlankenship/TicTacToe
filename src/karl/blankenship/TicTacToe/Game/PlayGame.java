@@ -27,7 +27,7 @@ public class PlayGame {
         */
                     
         // Setup a keyboard system object for keyboard player square entry.
-        Scanner keyboard = new Scanner(System.in); // input = keyboard.nextInt()
+        Scanner keyboard = new Scanner(System.in); // 
 
         // Set game over flag to false.
         boolean gameOver = false;
@@ -39,7 +39,7 @@ public class PlayGame {
         // Select whether player or computer goes first randomly by boolean
         // flag such as true for player and false for computer.
         Random random = new Random();
-        boolean userTurn = random.nextBoolean();
+        boolean playerTurn = random.nextBoolean();
         
         // Display instructions and grid
         grid.displayGrid();
@@ -48,20 +48,43 @@ public class PlayGame {
         System.out.println("when prompted as your turn.");
         System.out.println("You are X's and 3 in a row wins!");
         
+        System.out.print("\033[H\033[2J");
+        
+        System.out.println("hello");
+        
         // Set an empty squares flag (or could use a counter since 9 turns is
         // the most.
         boolean emptySquares = true;
         
         // While game is not over AND there are empty Squares.
-            
+    /*    while (!gameOver && emptySquares) {
             // If it is player turn
+            if (playerTurn) {
                 // Prompt player to type in a square by 
+                System.out.print("\033[H\033[2J");
+                grid.displayGrid();
+                System.out.println("Players Turn:");
+                System.out.println("Please type a square number " + 
+                        "and hit <enter>");
                 // number and hit enter (Eventually upgrade to a graphic 
-                // where grid can be clicked with a mouse.
+                // where grid can be clicked with a mouse.)
                 
+                // Read input.
+                String input = keyboard.nextLine();
+   
                 // If input is valid.
+                if (input.equals("1") ||
+                    input.equals("2") ||
+                    input.equals("3") ||
+                    input.equals("4") ||
+                    input.equals("5") ||
+                    input.equals("6") ||
+                    input.equals("7") ||
+                    input.equals("8") ||
+                    input.equals("9")) {
                     
                     // If square is empty
+                    if
 
                         // Update square object
 
@@ -79,10 +102,10 @@ public class PlayGame {
 
                     // Else, square is already taken, Display message that 
                     // square is already taken.
-                
+                }
                 // Else, if input is not valid
                     //Display a message that input is not valid
-                   
+            }       
                 
             // ELSE (if it is computer turn)
                 // Display a message that computer is thinking.
@@ -104,8 +127,8 @@ public class PlayGame {
                 // Check to see if Computer won using a win method.
                 
                 // If computer wins, display a message and set game flag to over
-               
-                
+        }       
+         */       
     }
     
 }
