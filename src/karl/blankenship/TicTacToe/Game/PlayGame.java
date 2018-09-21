@@ -6,6 +6,7 @@ package karl.blankenship.TicTacToe.Game;
 
 import java.util.Scanner;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  * This class contains the main method for playing the game.
@@ -48,7 +49,7 @@ public class PlayGame {
         System.out.println("when prompted as your turn.");
         System.out.println("You are X's and 3 in a row wins!");
         
-        System.out.print("\033[H\033[2J");
+
         
         System.out.println("hello");
         
@@ -61,7 +62,6 @@ public class PlayGame {
             // If it is player turn
             if (playerTurn) {
                 // Prompt player to type in a square by 
-                System.out.print("\033[H\033[2J");
                 grid.displayGrid();
                 System.out.println("Players Turn:");
                 System.out.println("Please type a square number " + 
