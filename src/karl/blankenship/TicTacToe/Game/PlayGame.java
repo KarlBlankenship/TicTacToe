@@ -4,6 +4,9 @@
  */
 package karl.blankenship.TicTacToe.Game;
 
+import java.util.Scanner;
+import java.util.Random;
+
 /**
  * This class contains the main method for playing the game.
  * @author Karl
@@ -22,23 +25,32 @@ public class PlayGame {
                 for each of the 9 squares so I can use a single instance.
                 I am going to try the Grid Class first.
         */
-        
-        Grid myGame = new Grid();
-        myGame.displayGrid();
-            
+                    
         // Setup a keyboard system object for keyboard player square entry.
+        Scanner keyboard = new Scanner(System.in); // input = keyboard.nextInt()
 
         // Set game over flag to false.
+        boolean gameOver = false;
         
         // Create objects to represent squares. // NEED SQUARE CLASS.
+        // Created a grid class
+        Grid grid = new Grid();
         
         // Select whether player or computer goes first randomly by boolean
         // flag such as true for player and false for computer.
+        Random random = new Random();
+        boolean userTurn = random.nextBoolean();
         
         // Display instructions and grid
+        grid.displayGrid();
+        System.out.println("Please type the number of the square you"); 
+        System.out.println("would like to select and hit <Enter>");   
+        System.out.println("when prompted as your turn.");
+        System.out.println("You are X's and 3 in a row wins!");
         
         // Set an empty squares flag (or could use a counter since 9 turns is
         // the most.
+        boolean emptySquares = true;
         
         // While game is not over AND there are empty Squares.
             

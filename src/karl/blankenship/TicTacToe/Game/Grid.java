@@ -24,31 +24,33 @@ public class Grid {
     private Boolean bottomMiddle;
     private Boolean bottomRight;
     
-    private String convertToString(Boolean x) {
+    private String convertToString(Boolean x, String square) {
         
         if (Boolean.TRUE.equals(x)) 
             return "X";
         else if (Boolean.FALSE.equals(x)) 
             return "O";
         else
-         return " ";
+            return square;
         
     }
     
     public void displayGrid() {
+        // NEED TO SOMEHOW PUT SQUARE NUMBERS IN GRID INSTEAD OF SPACES
+        
         System.out.println("Game:");
         System.out.println("   |   |   ");
-        System.out.println(" " + convertToString(topLeft) + " | " + 
-                convertToString(topMiddle) + " | " + 
-                convertToString(topRight) + " ");
+        System.out.println(" " + convertToString(topLeft, "1") + " | " + 
+                convertToString(topMiddle, "2") + " | " + 
+                convertToString(topRight, "3") + " ");
         System.out.println("---+---+---");
-        System.out.println(" " + convertToString(middleLeft) + " | " + 
-                convertToString(center) + " | " + 
-                convertToString(middleRight) + " ");
+        System.out.println(" " + convertToString(middleLeft, "4") + " | " + 
+                convertToString(center, "5") + " | " + 
+                convertToString(middleRight, "6") + " ");
         System.out.println("---+---+---");
-        System.out.println(" " + convertToString(bottomLeft) + " | " + 
-                convertToString(bottomMiddle) + " | " + 
-                convertToString(bottomRight) + " ");
+        System.out.println(" " + convertToString(bottomLeft, "7") + " | " + 
+                convertToString(bottomMiddle, "8") + " | " + 
+                convertToString(bottomRight, "9") + " ");
         System.out.println("   |   |   ");
     }
     
