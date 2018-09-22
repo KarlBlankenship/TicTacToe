@@ -21,6 +21,7 @@ public class PlayGame {
     private Random random; // For generating random numbers.
     private static boolean playerTurn; // Flag for knowing when it is players turn.
     private boolean emptySquares; // May turn this into a method.
+    private static Scanner keyboard; // Will hold player keyboard input.
     
     /**
      * Constructor.
@@ -80,9 +81,9 @@ public class PlayGame {
         
 
         
-        
-        game.display("welcome");
         game.display("board");
+        game.display("welcome");
+        
         
         // Set an empty squares flag (or could use a counter since 9 turns is
         // the most.
@@ -93,15 +94,13 @@ public class PlayGame {
             // If it is player turn
             if (playerTurn) {
                 // Prompt player to type in a square by 
-                grid.displayGrid();
-                System.out.println("Players Turn:");
-                System.out.println("Please type a square number " + 
-                        "and hit <enter>");
-                // number and hit enter (Eventually upgrade to a graphic 
-                // where grid can be clicked with a mouse.)
+                game.display("board");
+                int sq = game.getPlayerInput(3);
                 
-                // Read input.
-                String input = keyboard.nextLine();
+                
+    
+                
+                
    
                 // If input is valid.
                 if (input.equals("1") ||
@@ -165,7 +164,7 @@ public class PlayGame {
     }
     
     
-    private void display(String selection) {
+    private static void display(String selection) {
         
         if (selection.equals("board")) {
             System.out.println("Game:");
@@ -200,7 +199,9 @@ public class PlayGame {
         }
         
         if (selection.equals("player")) {
-            
+            System.out.println("Players Turn:");
+            System.out.println("Please type a square number " + 
+                        "and hit <enter>");
         }
         
     }
@@ -213,6 +214,27 @@ public class PlayGame {
         }
         return false;
         
+    }
+    
+    private static int getPlayerInput(int x) {
+        keyboard = new Scanner(System.in);
+                
+        while (x > 0) {
+        
+            display("player");
+        
+            int input = keyboard.nextInt();
+
+            if (input > 0 && input < 10 && squares.get(input).squareAvailable())
+                return input;
+
+            else {
+                System.out.println("Please try again.");
+                x = x - 1;
+            }
+            
+        }
+        return -1;  // to kill game
     }
     
 }
