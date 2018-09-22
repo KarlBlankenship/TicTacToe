@@ -27,11 +27,14 @@ public class PlayGame {
      */
     public PlayGame() {  // NEED TO FINISH CONSTRUCTOR
         
-        // Generate list of squares.
+        // Generate a list of square instances and set initial value.
         squares = new ArrayList();
         for (int i = 0; i < 9; i++) {
-            squares.add(new Square(Integer.toString(i+1)));
+            squares.add(new Square(Integer.toString(i+1)));   
         }
+        
+        // Set gameOver flag to false to start game.
+        gameOver = false;
         
     }
     
@@ -49,10 +52,10 @@ public class PlayGame {
         */
                     
         //TEst area
-        PlayGame game = new PlayGame();
+        /*PlayGame game = new PlayGame();
         for (int x = 0; x < 9; x++) {
             System.out.println("Square: " + game.squares.get(x).getContents());
-        }
+        }*/
 
         
 
@@ -68,8 +71,8 @@ public class PlayGame {
         
         // Select whether player or computer goes first randomly by boolean
         // flag such as true for player and false for computer.
-        //Random random = new Random();
-        //boolean playerTurn = random.nextBoolean();
+        // Random random = new Random();
+        // boolean playerTurn = random.nextBoolean();
         
         // Display instructions and grid
         //grid.displayGrid();
@@ -157,7 +160,12 @@ public class PlayGame {
                 
                 // If computer wins, display a message and set game flag to over
         }       
-         */       
+         */   
+
+        
     }
     
+    private void display() {
+            
+    }
 }
