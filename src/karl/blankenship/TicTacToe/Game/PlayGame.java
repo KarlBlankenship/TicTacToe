@@ -30,7 +30,7 @@ public class PlayGame {
         // Generate a list of square instances and set initial value.
         squares = new ArrayList();
         for (int i = 0; i < 10; i++) {
-            squares.add(new Square(Integer.toString(i+1)));   
+            squares.add(new Square(Integer.toString(i)));   
         }
         
         // Set gameOver flag to false to start game.
@@ -77,6 +77,7 @@ public class PlayGame {
                 if (checkForWin("X")) {
                     display("board");
                     System.out.println("Congrats! You win!");
+                    gameOver = true;
                 }
                 else {
                     playerTurn = false;
@@ -93,6 +94,7 @@ public class PlayGame {
                 if (checkForWin("O")) {
                     display("board");
                     System.out.println("The computer has won.");
+                    gameOver = true;
                 }
                 else {
                     playerTurn = true;
