@@ -19,13 +19,12 @@ public class PlayGame {
     private static boolean gameOver; // Flag for game to determine when it is over.
     private static Random random; // For generating random numbers.
     private static boolean playerTurn; // Flag for knowing when it is players turn.
-    private boolean emptySquares; // May turn this into a method.
     private static Scanner keyboard; // Will hold player keyboard input.
     
     /**
      * Constructor.
      */
-    public PlayGame() {  // NEED TO FINISH CONSTRUCTOR
+    public PlayGame() {
         
         // Generate a list of square instances and set initial value.
         squares = new ArrayList();
@@ -36,44 +35,38 @@ public class PlayGame {
         // Set gameOver flag to false to start game.
         gameOver = false;
         
-        //Select whether player or computer goes first randomly by boolean
-        // flag such as true for player and false for computer.
+        // Select whether player or computer goes first randomly by boolean
         random = new Random();
         playerTurn = random.nextBoolean();
     }
     
     /**
+     * Main method.
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        // Psuedo Code of how I think the game should flow.
-                    
-        // Create a new instance of PlayGame class to begin the game.
+                            
+        // Create a new instance of PlayGame class to build the game.
         PlayGame game = new PlayGame();
        
         display("board");
-        display("welcome");
-        
-        
-        // Set an empty squares flag (or could use a counter since 9 turns is
-        // the most.
-        //boolean emptySquares = true;
-        
+        display("welcome");        
+      
         // While game is not over AND there are empty Squares.
         while (!gameOver && emptySquares()) {
-            // If it is player turn
+            
             if (playerTurn) {
-                // Prompt player to type in a square by 
-                display("board");
+              
                 int sq = getPlayerInput(3);
-                // Apply response to the board.
+                
+                // If player doesn't enter a valid choice in three attempts.
                 if (sq == -1) {
                     gameOver = true;
                     System.out.println("Sorry, You Lost.");
                 }
                 else
                     squares.get(sq).setContents("X");
-                // Check to see if player won.
+               
                 if (checkForWin("X")) {
                     display("board");
                     System.out.println("Congrats! You win!");
@@ -83,10 +76,8 @@ public class PlayGame {
                     playerTurn = false;
                     display("board");
                 }
-    
             }    
-            else {
-                display("Board");
+            else { 
                 System.out.println("Computer is thinking...");
                 Thread.sleep(2000);
                 int csq = getComputerInput();
@@ -100,14 +91,9 @@ public class PlayGame {
                     playerTurn = true;
                     display("board");
                 }
-            }
-                
+            }      
         }            
-         
     }
-        
-    
-                    
     
     private static void display(String selection) {
         
@@ -147,8 +133,7 @@ public class PlayGame {
             System.out.println("Players Turn:");
             System.out.println("Please type a square number " + 
                         "and hit <enter>");
-        }
-        
+        }   
     }
     
     private static boolean emptySquares() {
@@ -164,7 +149,7 @@ public class PlayGame {
     private static int getPlayerInput(int x) {
         keyboard = new Scanner(System.in);
                 
-        // Ask three times for a valid input and then game is over.
+        // Ask x times for a valid input and then game is over.
         while (x > 0) {
         
             display("player");
@@ -222,6 +207,5 @@ public class PlayGame {
             return true;
         else
             return false;
-    }
-    
+    } 
 }
