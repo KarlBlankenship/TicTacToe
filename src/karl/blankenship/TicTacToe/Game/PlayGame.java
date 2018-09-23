@@ -95,6 +95,10 @@ public class PlayGame {
         }            
     }
     
+    /**
+     * display method for displaying various messages or instructions.
+     * @param selection 
+     */
     private static void display(String selection) {
         
         if (selection.equals("board")) {
@@ -136,6 +140,10 @@ public class PlayGame {
         }   
     }
     
+    /**
+     * emptySquares method checks the array for unassigned squares.
+     * @return false if grid is full, true if any squares are available.
+     */
     private static boolean emptySquares() {
       
         for (int i = 1; i < 10; i++) {
@@ -146,6 +154,12 @@ public class PlayGame {
         
     }
     
+    /**
+     * getPlayerInput promts player to enter an integer and validates the
+     * input.
+     * @param x is the number of attempts a player gets to pick a valid input.
+     * @return the input square integer or -1 if failed to enter correctly.
+     */
     private static int getPlayerInput(int x) {
         keyboard = new Scanner(System.in);
                 
@@ -168,6 +182,11 @@ public class PlayGame {
         return -1;  // to kill game
     }
     
+    /**
+     * getComputerInput will generate the computer input by random selection.
+     * I plan to add some type of strategy to this in the future.
+     * @return integer corresponding to the the selected square.
+     */
     private static int getComputerInput() {
         boolean found = false;
         int selection = 0;
@@ -179,6 +198,13 @@ public class PlayGame {
         return selection; 
     }
     
+    /**
+     * checkForWin will check all 8 possible winning combinations to determine
+     * whether there are three in a row. 
+     * I would like to find a smarter way to do this is the future.
+     * @param input X or O
+     * @return true if three in a row, false otherwise.
+     */
     private static boolean checkForWin(String input) {
         if ((squares.get(1).getContents().equals(input) &&
                 squares.get(2).getContents().equals(input) &&
