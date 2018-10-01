@@ -27,6 +27,7 @@ public class PlayGame {
     public PlayGame() {
         
         // Generate a list of square instances and set initial value.
+        // Zero object is created but not used.
         squares = new ArrayList();
         for (int i = 0; i < 10; i++) {
             squares.add(new Square(Integer.toString(i)));   
@@ -49,6 +50,8 @@ public class PlayGame {
         // Create a new instance of PlayGame class to build the game.
         PlayGame game = new PlayGame();
        
+        // Display the initial game board with a welcome message and
+        // instructions.
         display("board");
         display("welcome");        
       
@@ -57,16 +60,21 @@ public class PlayGame {
             
             if (playerTurn) {
               
-                // If player doesn't enter a valid choice in three attempts.
+                // Retrieve the players input.
+                // Player has three attempts to enter a correct square.
                 int sq = getPlayerInput(3);
                 
+                // Once three invalid attempts have been made, game over.
                 if (sq == -1) {
                     gameOver = true;
                     System.out.println("Sorry, You Lost.");
                 }
-                else
+                else // if the input was valid, the object is set to X.
                     squares.get(sq).setContents("X");
                
+                // Check to see if the input resulted in a win.
+                // If player won, display and end game.
+                // Else, set the turn to the computer.
                 if (checkForWin("X")) {
                     display("board");
                     System.out.println("Congrats! You win!");
@@ -77,11 +85,16 @@ public class PlayGame {
                     display("board");
                 }
             }    
+            // Computers turn to select a square.
             else { 
+                // Notify the player that the computer is working on a pick.
                 System.out.println("Computer is thinking...");
-                Thread.sleep(2000);
+                Thread.sleep(1000);
+                // Retrieve the computers input and set the object to O.
+                // The computer should always return a valid square.
                 int csq = getComputerInput();
                 squares.get(csq).setContents("O");
+                // Check for win, display output and set flags as appropriate.
                 if (checkForWin("O")) {
                     display("board");
                     System.out.println("The computer has won.");
@@ -155,7 +168,7 @@ public class PlayGame {
     }
     
     /**
-     * getPlayerInput promts player to enter an integer and validates the
+     * getPlayerInput prompts player to enter an integer and validates the
      * input.
      * @param x is the number of attempts a player gets to pick a valid input.
      * @return the input square integer or -1 if failed to enter correctly.
@@ -183,23 +196,23 @@ public class PlayGame {
     }
     
     /**
-     * getComputerInput will generate the computer input by random selection.
-     * I plan to add some type of strategy to this in the future.
+     * getComputerInput will generate the computer input.
+     * The computer will first look for a winning selection.
+     * The computer will next look for a blocking selection.
+     * At this point the computer will then select a random square
+     *  while I think about how to look for or block possible splits.
      * @return integer corresponding to the the selected square.
      */
     private static int getComputerInput() {
         boolean found = false;
-        //int[] emptySquares = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         int selection = 0;
         int i = 1;
         
         // Check to see if there is a square that will win for O and 
         // select it for the win.
         while (!found && i < 10) {
-            /*selection = random.nextInt(9) + 1;
-            if (squares.get(selection).squareAvailable())
-                found = true;*/
-            
+                // If there is an available square that will result ina win,
+                // return that index and set found flag to true.
                 if (squares.get(i).squareAvailable()) {
                     squares.get(i).setContents("O");
                     if (checkForWin("O")) {
@@ -208,7 +221,6 @@ public class PlayGame {
                         found = true;
                     }
                     else {
-                        //selection = i;
                         squares.get(i).setContents(Integer.toString(i));   
                     }
                 } 
@@ -216,8 +228,8 @@ public class PlayGame {
         }
         
         // Check to see if there is any square that will win for X and
-        // select it for O to block the win.
-        i = 1;
+        // select it for O to block the X win.
+        i = 1; // Reset the loop counter.
         while (!found && i < 10) {
             if (squares.get(i).squareAvailable()) {
                 squares.get(i).setContents("X");
@@ -242,13 +254,9 @@ public class PlayGame {
             }
         }
         
-        return selection;
-        
-        
+        return selection;    
     }
-    
-    
-    
+   
     /**
      * checkForWin will check all 8 possible winning combinations to determine
      * whether there are three in a row. 
