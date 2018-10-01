@@ -189,10 +189,17 @@ public class PlayGame {
      */
     private static int getComputerInput() {
         boolean found = false;
+        //int[] emptySquares = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         int selection = 0;
         int i = 1;
         
+        // Check to see if there is a square that will win for O and 
+        // select it for the win.
         while (!found && i < 10) {
+            /*selection = random.nextInt(9) + 1;
+            if (squares.get(selection).squareAvailable())
+                found = true;*/
+            
                 if (squares.get(i).squareAvailable()) {
                     squares.get(i).setContents("O");
                     if (checkForWin("O")) {
@@ -201,14 +208,47 @@ public class PlayGame {
                         found = true;
                     }
                     else {
-                        selection = i;
+                        //selection = i;
                         squares.get(i).setContents(Integer.toString(i));   
                     }
                 } 
             i++;
         }
+        
+        // Check to see if there is any square that will win for X and
+        // select it for O to block the win.
+        i = 1;
+        while (!found && i < 10) {
+            if (squares.get(i).squareAvailable()) {
+                squares.get(i).setContents("X");
+                if (checkForWin("X")) {
+                    selection = i;
+                    squares.get(i).setContents(Integer.toString(i));
+                    found = true;
+                }
+                else
+                    squares.get(i).setContents(Integer.toString(i));
+            }
+            i++;
+        }
+        
+        // If neither a win or block move was found, pick a random space for
+        // now until further strategy is added.
+        while (!found) {
+            int x = random.nextInt(9) + 1;
+            if (squares.get(x).squareAvailable()) {
+                selection = x;
+                found = true;
+            }
+        }
+        
         return selection;
+        
+        
     }
+    
+    
+    
     /**
      * checkForWin will check all 8 possible winning combinations to determine
      * whether there are three in a row. 
