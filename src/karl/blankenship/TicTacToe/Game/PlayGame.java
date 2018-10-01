@@ -57,9 +57,9 @@ public class PlayGame {
             
             if (playerTurn) {
               
+                // If player doesn't enter a valid choice in three attempts.
                 int sq = getPlayerInput(3);
                 
-                // If player doesn't enter a valid choice in three attempts.
                 if (sq == -1) {
                     gameOver = true;
                     System.out.println("Sorry, You Lost.");
@@ -190,14 +190,25 @@ public class PlayGame {
     private static int getComputerInput() {
         boolean found = false;
         int selection = 0;
-        while (!found) {
-            selection = random.nextInt(9) + 1;
-            if (squares.get(selection).squareAvailable())
-                found = true;   
+        int i = 1;
+        
+        while (!found && i < 10) {
+                if (squares.get(i).squareAvailable()) {
+                    squares.get(i).setContents("O");
+                    if (checkForWin("O")) {
+                        selection = i;
+                        squares.get(i).setContents(Integer.toString(i));
+                        found = true;
+                    }
+                    else {
+                        selection = i;
+                        squares.get(i).setContents(Integer.toString(i));   
+                    }
+                } 
+            i++;
         }
-        return selection; 
+        return selection;
     }
-    
     /**
      * checkForWin will check all 8 possible winning combinations to determine
      * whether there are three in a row. 
